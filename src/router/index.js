@@ -10,7 +10,7 @@ const routes = [
         component: () => import('../views/Main.vue'), //按需引入
         children: [
             {
-                path: '/home',
+                path: '/',
                 name: 'home',
                 component: () => import('../views/Home')
             },
@@ -23,6 +23,16 @@ const routes = [
                 path: '/user',
                 name: 'user',
                 component: () => import('../views/User')
+            },
+            {
+                path: '/pageOne',
+                name: 'pageOne',
+                component: () => import('../views/Other/PageOne.vue')
+            },
+            {
+                path: '/pageTwo',
+                name: 'pageTwo',
+                component: () => import('../views/Other/PageTwo.vue')
             }
         ]
     },

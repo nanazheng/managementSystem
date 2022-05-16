@@ -3,12 +3,12 @@
     default-active="Home"
     class="el-menu-vertical-demo"
     @open="handleOpen"
-    :clolapse="isCollapse"
+    :collapse="isCollapse"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <h3>通用管理系统</h3>
+    <h3>{{isCollapse ? '后台' : '通用管理系统'}}</h3>
     <el-menu-item
       v-for="item in noChildren"
       :key="item.path"
@@ -27,7 +27,7 @@
         v-for="(child, childIndex) in item.children"
         :key="child.path"
       >
-        <el-menu-item :index="childIndex">
+        <el-menu-item :index="childIndex + ''" @click="clickMenu(child)">
           <span>{{ child.label }}</span>
         </el-menu-item>
       </el-menu-item-group>
@@ -40,10 +40,9 @@ export default {
   name: "CommonAside",
   data() {
     return {
-      isCollapse: false,
       menu: [
         {
-          path: "/home",
+          path: "/",
           name: "home",
           label: "首页",
           icon: "s-home",
@@ -66,6 +65,7 @@ export default {
         },
 
         {
+          path: "/other",
           label: "其他",
           icon: "setting",
           children: [
@@ -105,6 +105,10 @@ export default {
     },
     hasChildren() {
       return this.menu.filter((item) => item.children);
+    },
+    isCollapse() {
+      console.log('this.$store.state.tab.isCollapse', this.$store.state.tab.isCollapse)
+      return this.$store.state.tab.isCollapse
     },
   },
 };
