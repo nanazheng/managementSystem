@@ -8,7 +8,7 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <h3>{{isCollapse ? '后台' : '通用管理系统'}}</h3>
+    <h3>{{ isCollapse ? "后台" : "通用管理系统" }}</h3>
     <el-menu-item
       v-for="item in noChildren"
       :key="item.path"
@@ -46,14 +46,12 @@ export default {
           name: "home",
           label: "首页",
           icon: "s-home",
-          url: "Home",
         },
         {
           path: "/mall",
           name: "mall",
           label: "商品管理",
           icon: "s-shop",
-          url: "Mall",
         },
 
         {
@@ -61,7 +59,6 @@ export default {
           name: "user",
           label: "用户管理",
           icon: "user-solid",
-          url: "User",
         },
 
         {
@@ -73,13 +70,11 @@ export default {
               path: "/pageOne",
               name: "pageOne",
               label: "页面一",
-              url: "Other/PageOne",
             },
             {
               path: "/pageTwo",
               name: "pageTwo",
               label: "页面二",
-              url: "Other/PageTwo",
             },
           ],
         },
@@ -95,9 +90,11 @@ export default {
     },
     clickMenu(item) {
       this.$router.push({
-        name: item.name
-      })
-    }
+        name: item.name,
+      });
+      console.log("item", item);
+      this.$store.commit("selectMenu", item);
+    },
   },
   computed: {
     noChildren() {
@@ -107,8 +104,11 @@ export default {
       return this.menu.filter((item) => item.children);
     },
     isCollapse() {
-      console.log('this.$store.state.tab.isCollapse', this.$store.state.tab.isCollapse)
-      return this.$store.state.tab.isCollapse
+      console.log(
+        "this.$store.state.tab.isCollapse",
+        this.$store.state.tab.isCollapse
+      );
+      return this.$store.state.tab.isCollapse;
     },
   },
 };

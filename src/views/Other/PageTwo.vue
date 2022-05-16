@@ -1,14 +1,12 @@
 <template>
-    <div>pageTwo</div>
+  <div>pageTwo</div>
 </template>
 
 <script>
-    export default {
-        name: "PageTwo",
-        data() {
-            return {
-                
-            }
-        }
-    }
+export default {
+  name: "PageTwo",
+  data() {
+    return {};
+  },
+};
 </script>

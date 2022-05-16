@@ -3,91 +3,81 @@
 </template>
 
 <script>
-  import * as echarts from 'echarts'
-  export default {
-    name: "ECharts",
-    props: {
-      isAxisChart: {
-        type: Boolean,
-        default: true,
+import * as echarts from "echarts";
+export default {
+  name: "ECharts",
+  props: {
+    isAxisChart: {
+      type: Boolean,
+      default: true,
+    },
+    chartData: {
+      type: Object,
+      default() {
+        return {
+          xData: [],
+          series: [],
+        };
       },
-      chartData: {
-        type: Object,
-        default() {
-          return {
-            tooltip: {
-              trigger: 'item'
-            },
-            xData: [],
-            series
-          }
-        }
-      }
     },
-    data() {
-      return {
-        axisOption: {
-          textStyle: {
-            color: "#333"
-          },
-          gird: {
-            left: "20%"
-          },
-          tooltip: {
-            trigger: 'axis'
-          },
-          xAxis: {
-            type: "category",
-            data: [],
-            axisLine: {
-              lineStyle: {
-                color: '#17b3a3'
-              }
-            },
-            axisLabel: {
-              interval: 0,
-              color: '#333'
-            }
-          },
-          yAxis: {
-              
-          },
-          legend: {
-            data: keyArray
-          },
-          series
+  },
+  data() {
+    return {
+      axisOption: {
+        tooltip: {
+          trigger: "item",
         },
-        normalOption: {
-          series: []
+        legend: {},
+        xAxis: {
+          type: "category",
+          data: [],
         },
-        echart
-      }
-    },
-    computed: {
-      options() {
-        return this.isAxisChart ? this.axisOption : this.normalOption
-      }
-    },
-    watch: {
-      chartData: {
-        handle: function() {
-          this.initCharts()
+        yAxis: {
+          type: "value",
         },
-        deep: true
-      }
-    },
-    methods: {
-      initCharts() {
-        this.initChartData()
+        series: [],
       },
-      initChartData() {
-        if(this.isAxisChart) {
-          this.axisOption.xAxis.data = this.chartData
-          this.axisOption.series = this.chartData.series
-        }else {
-          this.axisOption.series = this.chartData.series
-        }
+      normalOption: {
+        tooltip: {
+          trigger: "item",
+        },
+        legend: {},
+        series: [],
+      },
+      echart: null,
+    };
+  },
+  computed: {
+    options() {
+      return this.isAxisChart ? this.axisOption : this.normalOption;
+    },
+  },
+  watch: {
+    chartData: {
+      handler: function () {
+        this.initCharts();
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    initCharts() {
+      this.initChartData();
+      if (this.echart) {
+        this.echart.setOption(this.options);
+      } else {
+        this.echart = echarts.init(this.$refs.echarts);
+        this.echart.setOption(this.options);
       }
     },
-  }
+    initChartData() {
+      if (this.isAxisChart) {
+        this.axisOption.xAxis.data = this.chartData;
+        this.axisOption.series = this.chartData.series;
+      } else {
+        this.normalOption.series = this.chartData.series;
+      }
+    },
+  },
+};
 </script>

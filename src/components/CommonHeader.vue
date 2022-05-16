@@ -4,7 +4,15 @@
       <el-button size="mini" @click="handleMenu">
         <i class="el-icon-menu"></i>
       </el-button>
-      <h3 style="color: #fff">首页</h3>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          v-for="item in tags"
+          :to="{ path: item.path }"
+          :key="item.path"
+          :index="item.path"
+          >{{ item.label }}</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
     <div class="r-content">
       <el-dropdown trigger="click" size="mini">
@@ -21,19 +29,25 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name: 'CommonHeader',
+  name: "CommonHeader",
   data() {
     return {
-      avatar: require('../assets/images/logo.png')
-    }
+      avatar: require("../assets/images/logo.png"),
+    };
   },
   methods: {
     handleMenu() {
-      this.$store.commit('collapseMenu')
-    }
-  }
-}
+      this.$store.commit("collapseMenu");
+    },
+  },
+  computed: {
+    ...mapState({
+      tags: (state) => state.tab.tabLists,
+    }),
+  },
+};
 </script>
 
 <style lang="less" scoped>

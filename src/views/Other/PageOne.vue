@@ -1,14 +1,12 @@
 <template>
-    <div>pageone</div>
+  <div>pageone</div>
 </template>
 
 <script>
-    export default {
-        name: "PageOne",
-        data() {
-            return {
-                
-            }
-        }
-    }
+export default {
+  name: "PageOne",
+  data() {
+    return {};
+  },
+};
 </script>

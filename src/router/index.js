@@ -1,46 +1,51 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: '/',
-        name: 'Main',
-        component: () => import('../views/Main.vue'), //按需引入
-        children: [
-            {
-                path: '/',
-                name: 'home',
-                component: () => import('../views/Home')
-            },
-            {
-                path: '/mall',
-                name: 'mall',
-                component: () => import('../views/Mall')
-            },
-            {
-                path: '/user',
-                name: 'user',
-                component: () => import('../views/User')
-            },
-            {
-                path: '/pageOne',
-                name: 'pageOne',
-                component: () => import('../views/Other/PageOne.vue')
-            },
-            {
-                path: '/pageTwo',
-                name: 'pageTwo',
-                component: () => import('../views/Other/PageTwo.vue')
-            }
-        ]
-    },
-]
+  {
+    path: "/",
+    name: "Main",
+    component: () => import("../views/Main.vue"), //按需引入
+    children: [
+      {
+        path: "/",
+        name: "home",
+        component: () => import("../views/Home"),
+      },
+      {
+        path: "/mall",
+        name: "mall",
+        component: () => import("../views/Mall"),
+      },
+      {
+        path: "/user",
+        name: "user",
+        component: () => import("../views/User"),
+      },
+      {
+        path: "/pageOne",
+        name: "pageOne",
+        component: () => import("../views/Other/PageOne.vue"),
+      },
+      {
+        path: "/pageTwo",
+        name: "pageTwo",
+        component: () => import("../views/Other/PageTwo.vue"),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/Login/Login.vue"),
+  },
+];
 
 const router = new VueRouter({
-    mode: 'history',
-    routes
-})
+  mode: "history",
+  routes,
+});
 
-export default router
+export default router;
