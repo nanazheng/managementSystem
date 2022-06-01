@@ -39,12 +39,10 @@ export default {
       this.close(tag);
       if (tag.name !== this.$route.name) return;
       if (index === length) {
-        console.log("this.tags[index - 1].name", this.tags[index - 1].name);
         this.$router.push({
           name: this.tags[index - 1].name,
         });
       } else {
-        console.log("this.tags[index].name", this.tags[index].name);
         this.$router.push({
           name: this.tags[index].name,
         });

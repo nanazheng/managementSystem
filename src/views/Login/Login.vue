@@ -38,6 +38,8 @@
 </template>
 
 <script>
+// import Mock from 'mockjs'
+import { getMenu } from '../../../api/data.js'
 export default {
   name: "Login",
   data() {
@@ -65,15 +67,32 @@ export default {
             trigger: "blur",
           },
           {
-            min: 6,
-            message: "密码长度不能小于6位",
+            min: 5,
+            message: "密码长度不能小于5位",
           },
         ],
       },
     };
   },
   methods: {
-    login() {},
+    login() {
+      getMenu(this.loginForm).then((result) => {
+        if(result.data.code === 20000) {
+          this.$store.commit('clearMenu')
+          this.$store.commit('setMenu', result.data.data.menu)
+          this.$store.commit('setToken', result.data.data.menu)
+          this.$store.commit('addMenu', this.$router)
+          this.$router.push({name: 'home'})
+        }else {
+          this.$message.warning(result.data.data.message)
+        }
+      })
+      // const token = Mock.random.guid()
+      // this.$store.commit('setToken', token)
+      // this.$router.push({
+      //   name: 'home'
+      // })
+    },
   },
 };
 </script>

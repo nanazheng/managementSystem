@@ -1,13 +1,5 @@
 import axios from './axios'
 
-export const getMenu = (params) => {
-  return axios.request({
-    url: '/permission/get/Menu',
-    method: 'post',
-    data: params
-  })
-}
-
 export const getData = () => {
   return axios.request({
     url: '/home/getData',
@@ -20,5 +12,13 @@ export const getUsers = (params) => {
     url: '/user/getUserLists',
     method: 'get',
     params
+  })
+}
+
+export const getMenu = (params) => {
+  return axios.request({
+    url: '/permission/getMenu',
+    method: 'post',
+    data: params
   })
 }

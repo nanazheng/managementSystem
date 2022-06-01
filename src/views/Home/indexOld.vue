@@ -121,7 +121,6 @@ export default {
   mounted() {
     getData().then((result) => {
       const { code, data } = result.data;
-      console.log("data", data);
       if (code === 20000) {
         this.tableData = data.tableData;
         const orderData = data.orderData;
@@ -129,7 +128,6 @@ export default {
         const keyArray = Object.keys(orderData.data[0]);
         const series = [];
         keyArray.forEach((key) => {
-          console.log(key);
           series.push({
             name: key,
             data: orderData.data.map((item) => item[key]),
@@ -183,7 +181,6 @@ export default {
         U.setOption(userOption);
 
         const videoData = data.videoData;
-        console.log("videoData", videoData);
         const videoOption = {
           tooltip: {
             trigger: "item",

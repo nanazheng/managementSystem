@@ -40,45 +40,7 @@ export default {
   name: "CommonAside",
   data() {
     return {
-      menu: [
-        {
-          path: "/",
-          name: "home",
-          label: "首页",
-          icon: "s-home",
-        },
-        {
-          path: "/mall",
-          name: "mall",
-          label: "商品管理",
-          icon: "s-shop",
-        },
-
-        {
-          path: "/user",
-          name: "user",
-          label: "用户管理",
-          icon: "user-solid",
-        },
-
-        {
-          path: "/other",
-          label: "其他",
-          icon: "setting",
-          children: [
-            {
-              path: "/pageOne",
-              name: "pageOne",
-              label: "页面一",
-            },
-            {
-              path: "/pageTwo",
-              name: "pageTwo",
-              label: "页面二",
-            },
-          ],
-        },
-      ],
+      menu: [],
     };
   },
   methods: {
@@ -92,24 +54,22 @@ export default {
       this.$router.push({
         name: item.name,
       });
-      console.log("item", item);
       this.$store.commit("selectMenu", item);
     },
   },
   computed: {
     noChildren() {
-      return this.menu.filter((item) => !item.children);
+      return this.asyncMenu.filter((item) => !item.children);
     },
     hasChildren() {
-      return this.menu.filter((item) => item.children);
+      return this.asyncMenu.filter((item) => item.children);
     },
     isCollapse() {
-      console.log(
-        "this.$store.state.tab.isCollapse",
-        this.$store.state.tab.isCollapse
-      );
       return this.$store.state.tab.isCollapse;
     },
+    asyncMenu() {
+      return this.$store.state.tab.menu
+    }
   },
 };
 </script>

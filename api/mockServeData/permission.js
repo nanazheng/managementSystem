@@ -1,9 +1,9 @@
 import Mock from 'mockjs'
 export default {
   getMenu: config => {
-    console.log(config);
-    const { username, password } = JSON.parse(config.body)
+    console.log('config', config);
     console.log(JSON.parse(config.body))
+    const { username, password } = JSON.parse(config.body)
     // 先判断用户是否存在
     // 判断账号和密码是否对应
     if (username === 'admin' && password === 'admin') {
@@ -16,21 +16,24 @@ export default {
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'Home/Home'
+              url: 'Home/index'
+              // url: 'home/index'
             },
             {
               path: '/mall',
               name: 'mall',
               label: '商品管理',
               icon: 'video-play',
-              url: 'Mall/Mall'
+              url: 'Mall/index'
+              // url: 'mall/index'
             },
             {
               path: '/user',
               name: 'user',
               label: '用户管理',
               icon: 'user',
-              url: 'User/User'
+              url: 'User/index'
+              // url: 'User/index'
             },
             {
               label: '其他',
@@ -41,14 +44,14 @@ export default {
                   name: 'page1',
                   label: '页面1',
                   icon: 'setting',
-                  url: 'Other/PageOne'
+                  url: 'Other/PageOne.vue'
                 },
                 {
                   path: '/page2',
                   name: 'page2',
                   label: '页面2',
                   icon: 'setting',
-                  url: 'Other/PageTwo'
+                  url: 'Other/PageTwo.vue'
                 }
               ]
             }
@@ -67,14 +70,14 @@ export default {
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'Home/Home'
+              url: 'Home/index'
             },
             {
-              path: '/video',
-              name: 'video',
+              path: '/mall',
+              name: 'mall',
               label: '商品管理',
               icon: 'video-play',
-              url: 'VideoManage/VideoManage'
+              url: 'Mall/index'
             }
           ],
           token: Mock.Random.guid(),

@@ -54,7 +54,6 @@ export default {
       this.$emit("del", row);
     },
     changePage(page) {
-      console.log("pageeee", page);
       this.$emit("changePage", page);
     },
   },
